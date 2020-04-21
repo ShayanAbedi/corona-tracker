@@ -15,13 +15,15 @@ Stats Cards
 */
 .cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(1fr, auto));
   grid-gap: 1rem;
   align-items: center;
   justify-content: center;
   margin-top: 5rem;
+  width: 100%;
+  height: 100%;
 }
-.cards > * {
+.cards > div {
   background: #f2f2f2;
   font-size: 2rem;
   padding: 2rem;
@@ -35,4 +37,8 @@ Stats Cards
 }
 .deaths {
   color: red;
+}
+.last-updated {
+  color: rgb(143, 218, 235);
+  font-family: sans-serif;
 }

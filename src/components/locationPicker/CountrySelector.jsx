@@ -1,19 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { getCountries } from "../../api/Api";
 const CountrySelector = () => {
-  const [countries, setCountries] = useState([{}]);
-  const getData = async () => {
-    const data = await getCountries();
-    // setCountries(data);
-    console.log(typeof data);
+  const [countries, setCountries] = useState([]);
+  const [selectedCountry, setSelectedCountry] = useState("Global");
+  useEffect(() => {
+    async function getData() {
+      const data = await getCountries();
+      setCountries(data);
+    }
+    getData();
+  }, []);
+
+  const onChange = async (e) => {
+    setSelectedCountry(e.target.value);
   };
-  getData();
 
   return (
-    <select name="countries" id="countries">
-      {/* {countries.map((c) => {
-      <h1>{country}</h1>
-    })} */}
+    <select name="countries" id="countries" onChange={onChange}>
+      <option selected key="global" key="global">
+        Global
+      </option>
+      {countries.map((country) => (
+        <option key={country.iso2} value={country.iso2}>
+          {country.name}
+        </option>
+      ))}
     </select>
   );
 };
