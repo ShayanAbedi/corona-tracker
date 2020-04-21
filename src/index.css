@@ -15,7 +15,7 @@ Stats Cards
 */
 .cards {
   display: grid;
-  grid-template-columns: repeat(3, minmax(1fr, auto));
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 1rem;
   align-items: center;
   justify-content: center;
@@ -46,7 +46,8 @@ Stats Cards
 /* 
 Selector 
 */
-#select-country {
+#select-country,
+#select-state {
   width: 15rem;
   height: 2rem;
   margin-top: 3rem;

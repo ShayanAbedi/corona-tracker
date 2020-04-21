@@ -2,7 +2,9 @@ import React, { useState, useEffect, useContext } from "react";
 import CountUp from "react-countup";
 import GlobalContext from "../context/globalContext";
 const Cards = () => {
-  const { stats, selectedCountry, getStats } = useContext(GlobalContext);
+  const { stats, selectedCountry, selectedRegion, getStats } = useContext(
+    GlobalContext
+  );
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     async function fetchData() {
@@ -11,7 +13,7 @@ const Cards = () => {
       setLoading(false);
     }
     fetchData();
-  }, [selectedCountry]);
+  }, [selectedCountry, selectedRegion]);
 
   const { confirmed, recovered, deaths, lastUpdate } = stats;
 

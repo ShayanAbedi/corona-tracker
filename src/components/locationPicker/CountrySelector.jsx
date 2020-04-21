@@ -1,41 +1,16 @@
-// import React, { useState, useEffect } from "react";
-
-// const CountrySelector = () => {
-//   const [countries, setCountries] = useState([]);
-//   const [selectedCountry, setSelectedCountry] = useState("Global");
-//   useEffect(() => {
-//     async function getData() {
-//       const data = await getCountries();
-//       setCountries(data);
-//     }
-//     getData();
-//   }, []);
-
-//   const onChange = async (e) => {
-//     setSelectedCountry(e.target.value);
-//   };
-
-//   return (
-//     <select name="countries" id="countries" onChange={onChange}>
-//       <option selected key="global" key="global">
-//         Global
-//       </option>
-//       {countries.map((country) => (
-//         <option key={country.iso2} value={country.iso2}>
-//           {country.name}
-//         </option>
-//       ))}
-//     </select>
-//   );
-// };
-// export default CountrySelector;
 import React, { useEffect, useContext } from "react";
 import GlobalContext from "../../context/globalContext";
 
 export const CountrySelector = () => {
-  let { countries, getCountries, getStats, selectedCountry } = useContext(
-    GlobalContext
-  );
+  let {
+    countries,
+    regions,
+    selectedCountry,
+    getCountries,
+    getRegions,
+    getStats,
+    getRegionStats,
+  } = useContext(GlobalContext);
 
   useEffect(() => {
     async function fetchData() {
@@ -44,12 +19,16 @@ export const CountrySelector = () => {
     fetchData();
   }, []);
 
-  const onChange = (e) => {
+  const onChangeCountry = async (e) => {
     getStats(e.target.value);
+    await getRegions(e.target.value);
+  };
+  const onChangeRegion = async (e) => {
+    getRegionStats(e.target.value);
   };
   return (
     <>
-      <select name="countries" id="select-country" onChange={onChange}>
+      <select name="countries" id="select-country" onChange={onChangeCountry}>
         <option key="Global" value="Global">
           Global
         </option>
@@ -59,6 +38,16 @@ export const CountrySelector = () => {
           </option>
         ))}
       </select>
+      {selectedCountry !== "GLOBAL" && selectedCountry === "CA" ? (
+        <>
+          <br></br>
+          <select name="states" id="select-state" onChange={onChangeRegion}>
+            {regions.map((region) => (
+              <option>{region}</option>
+            ))}
+          </select>
+        </>
+      ) : null}
     </>
   );
 };
