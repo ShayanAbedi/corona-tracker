@@ -87,7 +87,6 @@ export const GlobalState = ({ children }) => {
       })),
     });
   };
-  getDailyStats();
   return (
     <GlobalContext.Provider
       value={{

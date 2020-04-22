@@ -1,8 +1,9 @@
 import React from "react";
+import { GlobalState } from "./context/GlobalState";
 import { Cards } from "./components/Cards";
 import { CountrySelector } from "./components/CountrySelector";
 import { Chart } from "./components/Chart";
-import { GlobalState } from "./context/GlobalState";
+
 import "./App.css";
 
 class App extends React.Component {
@@ -20,7 +21,6 @@ class App extends React.Component {
           <CountrySelector />
           <Cards />
           <Chart />
-          <br />
         </div>
       </GlobalState>
     );

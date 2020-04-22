@@ -62,14 +62,29 @@ Selector
 }
 
 /* 
-Charts 
+Chart Container 
 */
 .chart-container {
-  border: 2px solid rgb(143, 218, 235);
+  border: 2px solid rgb(4, 53, 63);
   padding: 2rem;
   margin: 0 auto;
   margin-top: 4rem;
   width: 45%;
   height: 45%;
   border-radius: 2rem;
+}
+@media only screen and (max-width: 800px) {
+  .chart-container {
+    width: 70%;
+    height: 70%;
+  }
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .header {
+    font-size: 2rem;
+    letter-spacing: 0.5rem;
+  }
 }
