@@ -1,38 +1,75 @@
-.App {
+@import url("https://fonts.googleapis.com/css2?family=Acme&family=Righteous&family=Ubuntu+Condensed&display=swap");
+
+body {
+  background-color: black;
+  color: white;
+  font-family: "Righteous", cursive;
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header {
+  font-size: 4rem;
+  letter-spacing: 0.5rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+/* 
+Stats Cards 
+*/
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 1rem;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  margin-top: 3rem;
+  width: 100%;
+  height: 100%;
+}
+.cases-title {
   color: white;
+  font-family: "Ubuntu Condensed", sans-serif;
+  font-size: 1.5rem;
+}
+.cases-number {
+  font-size: 3rem;
+}
+.confirmed {
+  color: rgb(255, 213, 0);
+}
+.recovered {
+  color: rgb(86, 199, 70);
+}
+.deaths {
+  color: rgb(227, 61, 53);
+}
+.last-updated {
+  color: rgb(131, 194, 196);
+  font-family: "Acme", sans-serif;
+  font-size: small;
 }
 
-.App-link {
-  color: #61dafb;
+/* 
+Selector 
+*/
+#select-country,
+#select-state {
+  width: 15rem;
+  height: 2rem;
+  margin-top: 3rem;
+  border: 1px solid rgb(143, 218, 235);
+}
+#select-state {
+  margin-left: 1rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* 
+Charts 
+*/
+.chart-container {
+  border: 2px solid rgb(143, 218, 235);
+  padding: 2rem;
+  margin: 0 auto;
+  margin-top: 4rem;
+  width: 45%;
+  height: 45%;
+  border-radius: 2rem;
 }

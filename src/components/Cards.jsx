@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import CountUp from "react-countup";
 import GlobalContext from "../context/globalContext";
-const Cards = () => {
-  const { stats, selectedCountry, selectedRegion, getStats } = useContext(
-    GlobalContext
-  );
+export const Cards = () => {
+  const { stats, selectedCountry, getStats } = useContext(GlobalContext);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     async function fetchData() {
@@ -13,7 +11,8 @@ const Cards = () => {
       setLoading(false);
     }
     fetchData();
-  }, [selectedCountry, selectedRegion]);
+    //eslint-disable-next-line
+  }, []);
 
   const { confirmed, recovered, deaths, lastUpdate } = stats;
 
@@ -25,21 +24,39 @@ const Cards = () => {
         <>
           <div className="cards">
             <div className="confirmed">
-              Confirmed:
+              <span className="cases-title">Infected</span>
               <br />
-              <CountUp start={0} end={confirmed} duration={1.5} separator="," />
+              <CountUp
+                className="cases-number"
+                start={0}
+                end={confirmed}
+                duration={1.5}
+                separator=","
+              />
             </div>
             <div className="recovered">
               {" "}
-              Recovered:
+              <span className="cases-title">Recovered</span>
               <br />
-              <CountUp start={0} end={recovered} duration={1.5} separator="," />
+              <CountUp
+                className="cases-number"
+                start={0}
+                end={recovered}
+                duration={1.5}
+                separator=","
+              />
             </div>
             <div className="deaths">
               {" "}
-              Deaths:
+              <span className="cases-title">Deaths</span>
               <br />
-              <CountUp start={0} end={deaths} duration={1.5} separator="," />
+              <CountUp
+                className="cases-number"
+                start={0}
+                end={deaths}
+                duration={1.5}
+                separator=","
+              />
             </div>
           </div>
           <br />
@@ -49,4 +66,3 @@ const Cards = () => {
     </>
   );
 };
-export default Cards;

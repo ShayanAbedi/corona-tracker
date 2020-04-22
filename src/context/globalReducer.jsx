@@ -1,4 +1,10 @@
-import { GET_STATS, GET_COUNTRIES, GET_REGIONS, GET_REGION_STATS } from "./types";
+import {
+  GET_STATS,
+  GET_COUNTRIES,
+  GET_LIST_OF_REGIONS,
+  GET_REGION_STATS,
+  GET_DAILY_STATS,
+} from "./types";
 export default (state, action) => {
   switch (action.type) {
     case GET_STATS:
@@ -11,7 +17,7 @@ export default (state, action) => {
         ...state,
         countries: action.payload,
       };
-    case GET_REGIONS:
+    case GET_LIST_OF_REGIONS:
       return {
         ...state,
         regions: action.payload.map((region) => region.provinceState),
@@ -19,9 +25,14 @@ export default (state, action) => {
       };
     case GET_REGION_STATS:
       return {
-        ...state, 
-        stats:action.payload
-      }
+        ...state,
+        stats: action.payload,
+      };
+    case GET_DAILY_STATS:
+      return {
+        ...state,
+        dailyStats: action.payload,
+      };
     default:
       return state;
   }
