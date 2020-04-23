@@ -1,5 +1,3 @@
-//TODO: make a global variable for url
-//TODO: try catch for actions calling the api
 import React, { useReducer } from "react";
 import axios from "axios";
 import GlobalContext from "./globalContext";
@@ -28,18 +26,25 @@ export const GlobalState = ({ children }) => {
   let url = "https://covid19.mathdro.id/api";
 
   const getStats = async (selected) => {
-    selected !== "Global" && (url = `${url}/countries/${selected}`);
-    state.selectedCountry = selected;
-    const res = await axios.get(url);
-    let { confirmed, recovered, deaths, lastUpdate } = res.data;
-    confirmed = confirmed.value;
-    recovered = recovered.value;
-    deaths = deaths.value;
-    lastUpdate = new Date(lastUpdate).toDateString();
-    dispatch({
-      type: GET_STATS,
-      payload: { confirmed, recovered, deaths, lastUpdate },
-    });
+    try {
+      if (selected !== "Global") {
+        var res = await axios.get(`${url}/countries/${selected}`);
+      } else {
+        res = await axios.get(url);
+      }
+      state.selectedCountry = selected;
+      let { confirmed, recovered, deaths, lastUpdate } = res.data;
+      confirmed = confirmed.value;
+      recovered = recovered.value;
+      deaths = deaths.value;
+      lastUpdate = new Date(lastUpdate).toDateString();
+      dispatch({
+        type: GET_STATS,
+        payload: { confirmed, recovered, deaths, lastUpdate },
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const getRegionStats = async (s) => {
@@ -60,32 +65,42 @@ export const GlobalState = ({ children }) => {
   };
 
   const getCountries = async () => {
-    const res = await axios.get(`${url}/countries`);
-    dispatch({
-      type: GET_COUNTRIES,
-      payload: res.data.countries,
-    });
+    try {
+      const response = await axios.get(`${url}/countries`);
+      dispatch({
+        type: GET_COUNTRIES,
+        payload: response.data.countries,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
   const getListOfRegions = async (s) => {
-    const res = await axios.get(
-      `https://covid19.mathdro.id/api/countries/${s}/confirmed`
-    );
-    dispatch({
-      type: GET_LIST_OF_REGIONS,
-      payload: res.data,
-    });
+    try {
+      const response = await axios.get(`${url}/countries/${s}/confirmed`);
+      dispatch({
+        type: GET_LIST_OF_REGIONS,
+        payload: response.data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const getDailyStats = async () => {
-    const { data } = await axios.get(`https://covid19.mathdro.id/api/daily`);
-    dispatch({
-      type: GET_DAILY_STATS,
-      payload: data.map(({ confirmed, deaths, reportDate: date }) => ({
-        confirmed: confirmed.total,
-        deaths: deaths.total,
-        date,
-      })),
-    });
+    try {
+      const { data } = await axios.get(`${url}/daily`);
+      dispatch({
+        type: GET_DAILY_STATS,
+        payload: data.map(({ confirmed, deaths, reportDate: date }) => ({
+          confirmed: confirmed.total,
+          deaths: deaths.total,
+          date,
+        })),
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <GlobalContext.Provider

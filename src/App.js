@@ -11,7 +11,7 @@ class App extends React.Component {
     return (
       <GlobalState>
         <div className="App">
-          <header className="header">
+          <header>
             C
             <span role="img" aria-label="corona">
               🦠

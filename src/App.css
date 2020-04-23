@@ -6,9 +6,18 @@ body {
   font-family: "Righteous", cursive;
   text-align: center;
 }
-.header {
+header {
   font-size: 4rem;
   letter-spacing: 0.5rem;
+}
+a {
+  text-decoration: none;
+  color: rgb(131, 194, 196);
+}
+footer {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 11px;
+  margin-top: 2rem;
 }
 
 /* 
@@ -43,8 +52,8 @@ Stats Cards
 }
 .last-updated {
   color: rgb(131, 194, 196);
-  font-family: "Acme", sans-serif;
-  font-size: small;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 11px;
 }
 
 /* 
@@ -56,6 +65,8 @@ Selector
   height: 2rem;
   margin-top: 3rem;
   border: 1px solid rgb(143, 218, 235);
+  font-family: "Righteous", cursive;
+  font-size: 15px;
 }
 #select-state {
   margin-left: 1rem;
@@ -82,9 +93,22 @@ Chart Container
     grid-template-columns: 1fr;
   }
 }
+@media only screen and (max-width: 520px) {
+  #select-state {
+    margin-left: 0;
+  }
+}
+
 @media only screen and (max-width: 400px) {
   .header {
     font-size: 2rem;
     letter-spacing: 0.5rem;
   }
+}
+
+.map-container {
+  border: red 1px solid;
+  /* position: relative;
+  margin: 0 auto; */
+  /* width: 100%; */
 }
