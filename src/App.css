@@ -65,8 +65,9 @@ Selector
   height: 2rem;
   margin-top: 3rem;
   border: 1px solid rgb(143, 218, 235);
-  font-family: "Righteous", cursive;
-  font-size: 15px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
 }
 #select-state {
   margin-left: 1rem;
