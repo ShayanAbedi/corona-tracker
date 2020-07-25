@@ -16,10 +16,17 @@ a {
 }
 footer {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  font-size: 11px;
   margin-top: 2rem;
 }
-
+footer .made-by {
+  font-size: 15px;
+}
+footer .api {
+  font-size: 12px;
+}
+footer small {
+  font-size: 10px;
+}
 /* 
 Stats Cards 
 */
